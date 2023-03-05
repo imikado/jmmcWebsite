@@ -4,6 +4,7 @@ namespace MyWebsite\Components;
 
 use Dupot\StaticGenerationFramework\Component\ComponentAbstract;
 use Dupot\StaticGenerationFramework\Component\ComponentInterface;
+use MyWebsite\Apis\OtherPagesApi;
 use MyWebsite\Pages\AgendaPage;
 use MyWebsite\Pages\ContactPage;
 use MyWebsite\Pages\ExhibitorsPage;
@@ -51,20 +52,19 @@ class NavComponent extends ComponentAbstract implements ComponentInterface
             (object)[
                 'label' => 'Exposants',
                 'link' => ExhibitorsPage::FILENAME
-            ],
-
-            (object)[
-                'label' => 'Nous soutenir',
-                'link' => SupportUsPage::FILENAME
-            ],
-
-            (object)[
-                'label' => 'Contact',
-                'link' => ContactPage::FILENAME
-            ],
-
+            ]
 
         ];
+
+        $otherPageApi = new OtherPagesApi();
+        $otherPageList = $otherPageApi->getCurrentList();
+        foreach ($otherPageList as $otherPageLoop) {
+            $linkList[] = (object)[
+                'label' => $otherPageLoop->title,
+                'link' => $otherPageLoop->filename
+            ];
+        }
+
 
         return $this->renderViewWithParamList(
             __DIR__ . '/Nav/nav.php',

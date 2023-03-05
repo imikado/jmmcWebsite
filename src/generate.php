@@ -1,6 +1,8 @@
 <?php
 
+use MyWebsite\Apis\OtherPagesApi;
 use MyWebsite\Pages\AgendaPage;
+use MyWebsite\Pages\ContentPage;
 use MyWebsite\Pages\ExhibitorsPage;
 use MyWebsite\Pages\HomePage;
 use MyWebsite\Pages\SellersPage;
@@ -18,6 +20,16 @@ $pagesList = [
     new ExhibitorsPage
 
 ];
+
+$otherPageApi = new OtherPagesApi();
+
+$otherPageList = $otherPageApi->getCurrentList();
+foreach ($otherPageList as $otherPageLoop) {
+    $contentPageLoop = new ContentPage();
+    $contentPageLoop->loadContent($otherPageLoop);
+
+    $pagesList[] = $contentPageLoop;
+}
 
 foreach ($pagesList as $pageLoop) {
     print("Generate " . $pageLoop->getFilename() . "\n");
