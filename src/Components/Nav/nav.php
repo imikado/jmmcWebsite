@@ -17,6 +17,9 @@
             <?php foreach ($this->paramList['linkList'] as $linkLoop) : ?>
                 <li <?php if ($this->paramList['pageSelected'] == $linkLoop->link) : ?>class="active" <?php endif ?>><a href="<?php echo $linkLoop->link ?>"><?php echo $linkLoop->label ?></a></li>
             <?php endforeach; ?>
+
+            <li><iframe id="haWidget" allowtransparency="true" src="https://www.helloasso.com/associations/j-aime-mon-marche-de-coeuilly/adhesions/adhesion/widget-bouton" style="width: 200px; height: 70px; border: none;"></iframe></li>
+
         </ul>
     </div>
 </nav>

@@ -34,7 +34,6 @@
 
   <?php echo $this->paramList['nav']->render() ?>
 
-
   <div class="container">
     <?php foreach ($this->paramList['contentList'] as $contentLoop) : ?>
       <?php echo $contentLoop->render(); ?>
